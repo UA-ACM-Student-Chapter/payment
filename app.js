@@ -46,7 +46,7 @@ app.post("/checkout", function (req, res) {
 			sa.post("https://requestb.in/1o21q7c1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
 			res.append('Access-Control-Allow-Origin', '*');
-			res.status(200).send();
+			res.send("ok");
 		}
 	});
 });
