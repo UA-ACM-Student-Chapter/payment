@@ -44,16 +44,21 @@ app.post("/checkout", function (req, res) {
 		}
 	}, function (err, result) {
 		if (result.success) {
+			console.log("successful payment");
 			sa.post("https://requestb.in/1of46el1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
 			res.append("Access-Control-Allow-Origin", "*");
 			res.send("ok");
 		}
 		else {
+			console.log("unsuccessful payment");
 			res.append("Access-Control-Allow-Origin", "*");
 			res.send("bad");
 		}
 	});
+	console.log("what");
+	res.append("Access-Control-Allow-Origin", "*");
+	res.send("ok");
 });
 
 app.post("/validate", function(req, res) {
