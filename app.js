@@ -44,10 +44,14 @@ app.post("/checkout", function (req, res) {
 		}
 	}, function (err, result) {
 		if (result.success) {
-			sa.post("https://requestb.in/1o21q7c1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
+			sa.post("https://requestb.in/1of46el1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
-			res.append('Access-Control-Allow-Origin', '*');
+			res.append("Access-Control-Allow-Origin", "*");
 			res.send("ok");
+		}
+		else {
+			res.append("Access-Control-Allow-Origin", "*");
+			res.send("bad");
 		}
 	});
 });
