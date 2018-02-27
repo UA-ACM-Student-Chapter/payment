@@ -45,6 +45,7 @@ app.post("/checkout", function (req, res) {
 		if (result.success) {
 			sa.post("https://requestb.in/1o21q7c1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
+			res.append('Access-Control-Allow-Origin', '*');
 			res.status(200).send();
 		}
 	});
@@ -53,6 +54,7 @@ app.post("/checkout", function (req, res) {
 app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
 		console.log(transaction);
+		res.append('Access-Control-Allow-Origin', '*');
 		if (transaction == null) res.send("no");
 		else res.send("yes");
 	});
