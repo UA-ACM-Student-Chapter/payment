@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
-  merchantId: process.environment.MERCHANT_ID,
-  publicKey: process.environment.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.environment.BRAINTREE_PRIVATE_KEY
+  merchantId: process.env.MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY
 });
 
 app.get('/', function (req, res) {
@@ -41,7 +41,7 @@ app.post("/checkout", function (req, res) {
 		}
 	}, function (err, result) {
 		if (result.success) {
-			sa.post("http://requestbin.fullcontact.com/18ek9tr1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
+			sa.post("https://requestb.in/1o21q7c1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
 			res.status(200).send();
 		}
@@ -50,7 +50,9 @@ app.post("/checkout", function (req, res) {
 
 app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
-		console.log("success");
+		console.log(transaction);
+		if (transaction == null) res.send("no");
+		else res.send("yes");
 	});
 });
 
