@@ -20,7 +20,9 @@ app.get('/', function (req, res) {
 });
 
 app.get("/client_token", function (req, res) {
+  console.log("hello");
   gateway.clientToken.generate({}, function (err, response) {
+	res.append('Access-Control-Allow-Origin', '*');
     res.send(response.clientToken);
 	});
 });
