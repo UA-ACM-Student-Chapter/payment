@@ -7,6 +7,11 @@ var app = express();
 app.use(express.static('./'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	next();
+  });
+  
 
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
@@ -22,13 +27,11 @@ app.get('/', function (req, res) {
 app.get("/client_token", function (req, res) {
   console.log("hello");
   gateway.clientToken.generate({}, function (err, response) {
-	res.append('Access-Control-Allow-Origin', '*');
     res.send(response.clientToken);
 	});
 });
 
 app.get("/pages/success.html", function(req, res) {
-	res.append('Access-Control-Allow-Origin', '*');
 	res.send("/pages/success.html");
 });
 
@@ -47,24 +50,20 @@ app.post("/checkout", function (req, res) {
 			console.log("successful payment");
 			sa.post("https://requestb.in/1of46el1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
-			res.append("Access-Control-Allow-Origin", "*");
 			res.send("ok");
 		}
 		else {
 			console.log("unsuccessful payment");
-			res.append("Access-Control-Allow-Origin", "*");
 			res.send("bad");
 		}
 	});
 	console.log("what");
-	res.append("Access-Control-Allow-Origin", "*");
 	res.send("ok");
 });
 
 app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
 		console.log(transaction);
-		res.append('Access-Control-Allow-Origin', '*');
 		if (transaction == null) res.send("no");
 		else res.send("yes");
 	});
