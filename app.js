@@ -28,6 +28,7 @@ app.get("/client_token", function (req, res) {
 });
 
 app.get("/pages/success.html", function(req, res) {
+	res.append('Access-Control-Allow-Origin', '*');
 	res.send("/pages/success.html");
 });
 
