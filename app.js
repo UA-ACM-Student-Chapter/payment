@@ -51,7 +51,6 @@ app.post("/checkout", function (req, res) {
 			var sa = require('superagent');
 			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, date: result.transaction.date}).end(function(err, res) {
 				console.log("bad thing happended");
-				res.send("something bad happened");
 			});
 			res.send("ok");
 		}
@@ -60,8 +59,6 @@ app.post("/checkout", function (req, res) {
 			res.send("bad");
 		}
 	});
-	console.log("what");
-	res.send("ok");
 });
 
 app.post("/validate", function(req, res) {
