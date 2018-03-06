@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var braintree = require("braintree");
-var sa = require('superagent');
 var app = express();
 
 app.use(express.static('./'));
@@ -49,7 +48,8 @@ app.post("/checkout", function (req, res) {
 	}, function (err, result) {
 		if (result.success) {
 			console.log("successful payment");
-			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
+			var sa = require('superagent');
+			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, date: result.transaction.date}).end(function(err, res) {
 			});
 			res.send("ok");
 		}
