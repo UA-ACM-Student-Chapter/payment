@@ -49,7 +49,7 @@ app.post("/checkout", function (req, res) {
 	}, function (err, result) {
 		if (result.success) {
 			console.log("successful payment");
-			sa.post("https://requestb.in/1of46el1").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
+			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({transaction: result.transaction.id, size: shirtSize, email: userEmail}).end(function(err, res) {
 			});
 			res.send("ok");
 		}
