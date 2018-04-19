@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
   
 
 var gateway = braintree.connect({
-  environment: braintree.Environment.Sandbox,
+  environment: braintree.Environment.Production,
   merchantId: process.env.MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
   privateKey: process.env.BRAINTREE_PRIVATE_KEY
