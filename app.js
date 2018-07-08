@@ -75,6 +75,7 @@ app.post("/checkout", function (req, res) {
 app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
 		console.log(transaction);
+		console.log(req.body);
 		if (transaction != null && transaction.customer.email == req.body.email) res.send("yes");
 		else res.send("no");
 	});
