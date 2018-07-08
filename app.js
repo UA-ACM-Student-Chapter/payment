@@ -54,7 +54,13 @@ app.post("/checkout", function (req, res) {
 		if (result.success) {
 			console.log("successful payment");
 			var sa = require('superagent');
-			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,10), paymentType: result.transaction.paymentInstrumentType}).end(function(err, response) {
+			var last4 = "";
+			var cardType = "";
+			if (result.transaction.paymentInstrumentType == "credit_card") {
+				last4 = result.transaction.creditCard.CreditCard.last4;
+				cardType = result.transaction.creditCard.CreditCard.cardType;
+			}
+			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,10), paymentType: result.transaction.paymentInstrumentType, last4: last4, cardType: cardType}).end(function(err, response) {
 				res.send(response);
 			});
 		}
