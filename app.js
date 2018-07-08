@@ -46,6 +46,9 @@ app.post("/checkout", function (req, res) {
 			submitForSettlement: true,
 			venmo: {}
 		},
+	customer: {
+		email: userEmail	
+	},
 	deviceData: req.body.device_data
 	}, function (err, result) {
 		if (result.success) {
