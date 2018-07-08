@@ -51,7 +51,7 @@ app.post("/checkout", function (req, res) {
 		if (result.success) {
 			console.log("successful payment");
 			var sa = require('superagent');
-			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.date}).end(function(err, res) {
+			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,9), paymentType: result.transaction.transaction.paymentInstrumentType}).end(function(err, res) {
 			});
 			res.send("ok");
 		}
