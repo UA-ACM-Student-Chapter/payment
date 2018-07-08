@@ -43,14 +43,15 @@ app.post("/checkout", function (req, res) {
   	amount: "10.00",
   	paymentMethodNonce: nonceFromTheClient,
 		options: {
-			submitForSettlement: true
-		}
+			submitForSettlement: true,
+			venmo: {}
+		},
+	deviceData: req.body.device_data
 	}, function (err, result) {
 		if (result.success) {
 			console.log("successful payment");
 			var sa = require('superagent');
-			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, date: result.transaction.date}).end(function(err, res) {
-				console.log("bad thing happended");
+			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.date}).end(function(err, res) {
 			});
 			res.send("ok");
 		}
