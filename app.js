@@ -68,7 +68,7 @@ app.post("/checkout", function (req, res) {
 app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
 		console.log(transaction);
-		if (transaction != null && transaction.statusHistory[0].user == req.body.email) res.send("yes");
+		if (transaction != null && transaction.customer.email == req.body.email) res.send("yes");
 		else res.send("no");
 	});
 });
