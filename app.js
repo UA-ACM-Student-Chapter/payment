@@ -66,6 +66,7 @@ app.post("/checkout", function (req, res) {
 		}
 		else {
 			console.log("unsuccessful payment");
+			console.log(result);
 			res.send("bad");
 		}
 	});
