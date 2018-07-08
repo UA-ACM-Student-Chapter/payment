@@ -60,6 +60,9 @@ app.post("/checkout", function (req, res) {
 				last4 = result.transaction.creditCard.last4;
 				cardType = result.transaction.creditCard.cardType;
 			}
+			else if (result.transaction.paymentInstrumentType == "venmo_account") {
+				cardType = result.transaction.sourceDescription;
+			}
 			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,10), paymentType: result.transaction.paymentInstrumentType, last4: last4, cardType: cardType}).end(function(err, response) {
 				res.send(response);
 			});
