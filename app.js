@@ -24,6 +24,10 @@ app.get('/', function (req, res) {
 	res.send("index.html");
 });
 
+app.get('/wakeup', function (req, res) {
+	res.send("awake");
+});
+
 app.get("/client_token", function (req, res) {
   console.log("hello");
   gateway.clientToken.generate({}, function (err, response) {
