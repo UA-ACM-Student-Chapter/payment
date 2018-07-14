@@ -84,7 +84,10 @@ app.post("/validate", function(req, res) {
 	gateway.transaction.find(req.body.id, function (err, transaction) {
 		console.log(transaction);
 		console.log(req.body);
-		if (transaction != null && transaction.customer.email == req.body.email) res.send(transaction.createdAt.substring(0,10));
+		if (transaction != null && transaction.customer.email == req.body.email) {
+			console.log("transaction for " + transaction.customer.email + "is valid for date " + transaction.createdAt.substring(0,10));
+			res.send(transaction.createdAt.substring(0,10));
+		}
 		else res.send("no");
 	});
 });
