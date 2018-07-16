@@ -1,4 +1,5 @@
 # payment
+A payments backend following closely to the Braintree example
 
 ## Documentation
 https://ua-acm-student-chapter.github.io/backend_docs.html
