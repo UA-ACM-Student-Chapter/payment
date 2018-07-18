@@ -6,7 +6,7 @@
     "addons": [ ],
     "env" : {
       "HEROKU_INSTANCE_NAME" : {
-        "description" : "Name of the name given to the ACM Web Util instance you set up. E.g., 'ua-acm-web-util'"
+        "description" : "The app name given to the ACM Web Util instance you set up in Heroku. E.g., 'ua-acm-web-util'"
       },
       "BRAINTREE_PUBLIC_KEY" : {
         "description": "The public key provided from Braintree Payments"
