@@ -11,10 +11,14 @@ app.use(function(req, res, next) {
 	res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
   });
-  
+
+var braintreeEnvironment = braintree.Environment.Sandbox;
+if (process.env.IS_PRODUCTION == "true") {
+	braintreeEnvironment = braintree.Environment.Production;
+}
 
 var gateway = braintree.connect({
-  environment: braintree.Environment.Sandbox,
+  environment: braintreeEnvironment,
   merchantId: process.env.MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
   privateKey: process.env.BRAINTREE_PRIVATE_KEY
@@ -68,7 +72,7 @@ app.post("/checkout", function (req, res) {
 				last4 = result.transaction.venmoAccount.venmoUserId;
 				cardType = "Venmo";
 			}
-			sa.post("https://ua-acm-web-util.herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,10), paymentType: result.transaction.paymentInstrumentType, last4: last4, cardType: cardType}).end(function(err, response) {
+			sa.post("https://" + process.env.HEROKU_INSTANCE_NAME + ".herokuapp.com/member/payforsemester").send({purchaseID: result.transaction.id, size: shirtSize, email: userEmail, datePaid: result.transaction.createdAt.substring(0,10), paymentType: result.transaction.paymentInstrumentType, last4: last4, cardType: cardType}).end(function(err, response) {
 				res.send(response);
 			});
 		}
