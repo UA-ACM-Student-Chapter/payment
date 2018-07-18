@@ -1,0 +1,28 @@
+{
+    "name": "payments",
+    "description": " A payments backend following closely to the Braintree example ",
+    "repository": "https://github.com/UA-ACM-Student-Chapter/payment",
+    "image": "heroku/java",
+    "addons": [ ],
+    "env" : {
+      "HEROKU_INSTANCE_NAME" : {
+        "description" : "Name of the name given to the ACM Web Util instance you set up. E.g., 'ua-acm-web-util'"
+      },
+      "BRAINTREE_PUBLIC_KEY" : {
+        "description": "The public key provided from Braintree Payments"
+      },
+      "BRAINTREE_PRIVATE_KEY" : {
+        "description": "The private key provided from Braintree Payments"
+      },
+      "MERCHANT_ID": {
+        "description": "The merchant ID provided from Braintree Payments"
+      },
+      "TZ": {
+        "description": "The timezone to use for dates displayed in emails. Recommended: 'America/Chicago'"
+      },
+      "IS_PRODUCTION": {
+        "description": "Determines if the sandbox or production environment will be used with the given Braintree account"
+      }
+    }
+  }
+  
