@@ -21,7 +21,7 @@
         "description": "The timezone to use for dates displayed in emails. Recommended: 'America/Chicago'"
       },
       "IS_PRODUCTION": {
-        "description": "Determines if the sandbox or production environment will be used with the given Braintree account"
+        "description": "Determines if the sandbox or production environment will be used with the given Braintree account (probably should go with 'false' first, unless you're somehow ready to be 'true')"
       }
     }
   }
