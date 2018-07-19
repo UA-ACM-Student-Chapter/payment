@@ -17,6 +17,9 @@
       "MERCHANT_ID": {
         "description": "The merchant ID provided from Braintree Payments"
       },
+      "DUES_COST": {
+        "description": "The cost of dues for a semester"
+      },
       "TZ": {
         "description": "The timezone to use for dates displayed in emails. Recommended: 'America/Chicago'"
       },

@@ -48,7 +48,7 @@ app.post("/checkout", function (req, res) {
 	var userEmail = req.body.email;
 	var shirtSize = req.body.size;
 	gateway.transaction.sale({
-  	amount: "10.00",
+  	amount: "$" + process.env.DUES_COST,
   	paymentMethodNonce: nonceFromTheClient,
 		options: {
 			submitForSettlement: true,
