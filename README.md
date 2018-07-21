@@ -2,14 +2,14 @@
 A payments backend following closely to the Braintree example
 
 ## Documentation
-https://ua-acm-student-chapter.github.io/backend_docs.html
+https://ua-acm-student-chapter.github.io/docs/backend_docs.html
 
 ## Use it for your student organization
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 __Deployment Guide__
 
-https://ua-acm-student-chapter.github.io/deployment_guide.html
+https://ua-acm-student-chapter.github.io/docs/deployment_guide.html
 
 ## About
 **What the heck is this for?**
