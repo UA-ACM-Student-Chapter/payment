@@ -79,7 +79,7 @@ app.post("/checkout", function (req, res) {
 		else {
 			console.log("unsuccessful payment");
 			console.log(result);
-			res.send({'text': "{'success':false, 'errorMessage': 'Transaction is not valid'}"});
+			res.send({'text': "{\"success\":false, \"errorMessage\": \"Transaction is not valid\"}"});
 		}
 	});
 });
