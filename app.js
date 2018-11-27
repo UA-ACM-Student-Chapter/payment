@@ -13,8 +13,14 @@ app.use(function(req, res, next) {
   });
 
 var braintreeEnvironment = braintree.Environment.Sandbox;
+var merchantId = process.env.SANDBOX_MERCHANT_ID;
+var publicKey = process.env.SANDBOX_BRAINTREE_PUBLIC_KEY;
+var privateKey = process.env.SANDBOX_BRAINTREE_PRIVATE_KEY;
 if (process.env.IS_PRODUCTION == "true") {
 	braintreeEnvironment = braintree.Environment.Production;
+	merchantId = process.env.MERCHANT_ID;
+	publicKey = process.env.BRAINTREE_PUBLIC_KEY;
+	privateKey = process.env.BRAINTREE_PRIVATE_KEY;
 }
 
 var gateway = braintree.connect({
