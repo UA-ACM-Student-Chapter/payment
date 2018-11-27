@@ -25,9 +25,9 @@ if (process.env.IS_PRODUCTION == "true") {
 
 var gateway = braintree.connect({
   environment: braintreeEnvironment,
-  merchantId: process.env.MERCHANT_ID,
-  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.env.BRAINTREE_PRIVATE_KEY
+  merchantId: merchantId,
+  publicKey: publicKey,
+  privateKey: privateKey
 });
 
 app.get('/', function (req, res) {
